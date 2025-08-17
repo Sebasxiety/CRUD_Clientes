@@ -1,36 +1,55 @@
-@model CRUD_Clientes.Models.Cliente
-
+﻿@model CRUD_Clientes.Models.Cliente
 @{
-    ViewData["Title"] = "Detalles";
-}
+    Layout = null;
+} <!-- para que renderice solo el modal -->
 
-<h1>Detalles</h1>
+<div class="modal fade" id="appModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+            <div class="modal-header border-0" style="background: linear-gradient(135deg,#1e90ff,#6c63ff);">
+                <h5 class="modal-title text-white">
+                    <i class="bi bi-person-vcard me-2"></i> Detalles del Cliente
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
 
-<div>
-    <h4>Cliente</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Telefono)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Telefono)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Editar</a> |
-    <a asp-action="Index">Volver</a>
+            <div class="modal-body p-4">
+                <div class="row g-3">
+                    <div class="col-12">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="avatar bg-light rounded-3 p-3">
+                                <i class="bi bi-person-fill fs-2 text-primary"></i>
+                            </div>
+                            <div>
+                                <div class="fw-semibold text-muted small">Nombre</div>
+                                <div class="fs-5">@Model.Nombre</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="card border-0 bg-light-subtle rounded-4">
+                            <div class="card-body d-flex flex-column gap-3">
+                                <div>
+                                    <div class="fw-semibold text-muted small">Email</div>
+                                    <div class="fs-6">@Model.Email</div>
+                                </div>
+                                <div>
+                                    <div class="fw-semibold text-muted small">Teléfono</div>
+                                    <div class="fs-6">@Model.Telefono</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer border-0 p-3">
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">
+                    <i class="bi bi-pencil-square me-1"></i> Editar
+                </a>
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
 </div>
